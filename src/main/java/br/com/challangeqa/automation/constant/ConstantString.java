@@ -12,4 +12,7 @@ public class ConstantString {
 
     public static final String HERO_LIST_JSON_SCHEMA_NAME = "hero_list_schema";
     public static final String HERO_LIST_JSON_RESPONSE_DATA_NAME = "hero_list_response_data";
+
+    public static final String ADD_HERO_JSON_SCHEMA_NAME = "add_hero_schema";
+    public static final String ADD_HERO_JSON_RESPONSE_DATA_NAME = "add_hero_response_data";
 }

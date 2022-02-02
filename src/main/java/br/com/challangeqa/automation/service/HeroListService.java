@@ -8,16 +8,16 @@ import io.restassured.http.Header;
 
 import java.util.List;
 
-public class HeroService extends AbstractService {
+public class HeroListService extends AbstractService {
 
-    private final String HEROES = "/heroes";
+    private final String HEROES_ENDPOINT = "/heroes";
 
     public List<HeroResponse> getHeroesList(String token) {
 
         return requestUtil.getList(
                 HeaderUtil.getHeader(new Header("x-access-token", token)),
                 HeroResponse.class,
-                HEROES,
+                HEROES_ENDPOINT,
                 ConstantString.HERO_LIST_JSON_RESPONSE_DATA_NAME
         );
     }
@@ -47,7 +47,7 @@ public class HeroService extends AbstractService {
         return requestUtil.get(
                 HeaderUtil.getHeader(headers),
                 ResponseObject.class,
-                HEROES,
+                HEROES_ENDPOINT,
                 ConstantString.HERO_LIST_JSON_RESPONSE_DATA_NAME
         );
     }

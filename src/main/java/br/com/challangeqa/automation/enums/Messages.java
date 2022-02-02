@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Messages {
 
+    HERO_ALREADY_EXISTS("This hero already exists"),
     UNAUTHORIZED("Unauthorized");
 
     private String message;

@@ -2,10 +2,9 @@ package br.com.challangeqa.automation.test.hero.list;
 
 import br.com.challangeqa.automation.enums.Messages;
 import br.com.challangeqa.automation.model.response.ResponseObject;
-import br.com.challangeqa.automation.model.response.authentication.AuthenticationResponse;
 import br.com.challangeqa.automation.model.response.hero.HeroResponse;
 import br.com.challangeqa.automation.service.AuthenticationService;
-import br.com.challangeqa.automation.service.HeroService;
+import br.com.challangeqa.automation.service.HeroListService;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 public class HeroListStepDefinition {
 
     private AuthenticationService authenticationService;
-    private HeroService heroService;
+    private HeroListService heroListService;
     private String token;
     private List<HeroResponse> heroesList;
     private ResponseObject responseObject;
@@ -28,7 +27,7 @@ public class HeroListStepDefinition {
     public void init() {
 
         authenticationService = new AuthenticationService();
-        heroService = new HeroService();
+        heroListService = new HeroListService();
     }
 
     @Given("I have a valid token")
@@ -40,25 +39,25 @@ public class HeroListStepDefinition {
     @Given("I call get heroes list API without header")
     public void i_call_get_heroes_list_API_without_header() {
 
-        responseObject = heroService.getHeroesListWithNoHeader();
+        responseObject = heroListService.getHeroesListWithNoHeader();
     }
 
     @Given("I call get heroes list API with invalid header")
     public void i_call_get_heroes_list_API_with_invalid_header() {
 
-        responseObject = heroService.getHeroesListWithInvalidHeader();
+        responseObject = heroListService.getHeroesListWithInvalidHeader();
     }
 
     @When("I call get heroes list API")
     public void i_call_get_heroes_list_API() {
 
-        heroesList = heroService.getHeroesList(token);
+        heroesList = heroListService.getHeroesList(token);
     }
 
     @When("I get API schema")
     public void i_get_API_schema() {
 
-        isValidSchema = heroService.validateSchema();
+        isValidSchema = heroListService.validateSchema();
     }
 
     @Then("should return list data")
