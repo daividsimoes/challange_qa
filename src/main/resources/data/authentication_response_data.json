@@ -1,0 +1,6 @@
+{
+  "auth": false,
+  "token": null,
+  "statusCode": 500,
+  "message": "Unauthorized"
+}

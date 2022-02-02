@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"classpath:/fetures/authentication"},
+        features = {"classpath:/features/authentication"},
         glue = {"br.com.challangeqa.automation.test.authentication"},
         plugin = {"pretty", "json:target/cucumber/authentication.json"}
 )

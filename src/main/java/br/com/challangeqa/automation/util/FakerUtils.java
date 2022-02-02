@@ -4,11 +4,11 @@ import com.github.javafaker.Faker;
 
 import java.util.Locale;
 
-public class FakerUtil {
+public class FakerUtils {
 
     private Faker faker;
 
-    public FakerUtil(){
+    public FakerUtils(){
 
         this.faker = new Faker();
     }

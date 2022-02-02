@@ -19,6 +19,9 @@
         <google-gson.version>2.8.5</google-gson.version>
         <javafaker.version>1.0.2</javafaker.version>
         <cucumber.version>4.3.0</cucumber.version>
+        <everit-json-schema.version>1.4.0</everit-json-schema.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-codec.version>1.12</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -81,6 +84,24 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.everit.json</groupId>
+            <artifactId>org.everit.json.schema</artifactId>
+            <version>${everit-json-schema.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
 
