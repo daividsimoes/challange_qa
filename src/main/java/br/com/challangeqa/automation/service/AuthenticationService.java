@@ -36,21 +36,21 @@ public class AuthenticationService extends AbstractService {
 
     public boolean validateSchema() {
 
-        return schemaUtils.schemaValidation(ConstantString.ROOT_JSON_DATA_PATH,
-                ConstantString.AUTHENTICATION_JSON_RESPONSE_DATA_NAME, ConstantString.ROOT_JSON_SCHEMA_PATH,
-                ConstantString.AUTHENTICATION_JSON_SCHEMA_NAME);
+        return schemaUtils.schemaValidationObject(
+                ConstantString.ROOT_JSON_DATA_PATH,
+                ConstantString.AUTHENTICATION_JSON_RESPONSE_DATA_NAME,
+                ConstantString.ROOT_JSON_SCHEMA_PATH,
+                ConstantString.AUTHENTICATION_JSON_SCHEMA_NAME
+        );
     }
 
     private AuthenticationResponse authenticate(Headers headers) {
 
-        AuthenticationResponse authenticationResponse = requestUtil.post(
+        return requestUtil.post(
                 headers,
                 AuthenticationResponse.class,
-                AUTH_ENDPOINT
+                AUTH_ENDPOINT,
+                ConstantString.AUTHENTICATION_JSON_RESPONSE_DATA_NAME
         );
-        schemaUtils.createJsonDataFile(authenticationResponse, ConstantString.ROOT_JSON_DATA_PATH,
-                ConstantString.AUTHENTICATION_JSON_RESPONSE_DATA_NAME);
-
-        return authenticationResponse;
     }
 }

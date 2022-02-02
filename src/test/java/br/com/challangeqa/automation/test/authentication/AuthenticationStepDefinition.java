@@ -18,7 +18,7 @@ public class AuthenticationStepDefinition {
     private boolean isValidSchema;
 
     @Before("@init")
-    public void before() {
+    public void init() {
 
         authenticationService = new AuthenticationService();
     }

@@ -11,4 +11,4 @@
 .project
 .idea
 target
-src/main/resources/json_data
+src/main/resources/data

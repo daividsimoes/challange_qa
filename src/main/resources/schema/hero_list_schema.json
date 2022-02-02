@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "object",
+          "properties": {
+            "power": {
+              "type": "integer"
+            },
+            "velocity": {
+              "type": "integer"
+            },
+            "combat": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "power",
+            "velocity",
+            "combat"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "skills"
+      ]
+    }
+  ]
+}

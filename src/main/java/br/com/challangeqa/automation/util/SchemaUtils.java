@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -52,8 +53,8 @@ public class SchemaUtils {
         }
     }
 
-    public boolean schemaValidation(String rootJsonDataPath, String rootJsonDataName,
-                                    String rootJsonSchemaPath, String jsonSchemaName) {
+    public boolean schemaValidationObject(String rootJsonDataPath, String rootJsonDataName,
+                                          String rootJsonSchemaPath, String jsonSchemaName) {
 
         String jsonName = rootJsonDataName.concat(".").concat(FILE_EXTENSION);
         try {
@@ -73,6 +74,55 @@ public class SchemaUtils {
             Schema schema = SchemaLoader.load(jsonSchema);
             schema.validate(jsonObject);
 
+            return true;
+
+        } catch (FileNotFoundException e) {
+
+            log.error("File not found");
+            return false;
+
+        } catch (ValidationException e) {
+
+            List<String> list = e.getCausingExceptions().stream()
+                    .map(ValidationException::getMessage)
+                    .collect(Collectors.toList());
+
+            if (list.isEmpty()) {
+
+                log.error(e.getMessage());
+                return false;
+            } else {
+
+                log.error(list.toString());
+                return false;
+            }
+        }
+    }
+
+    public boolean schemaValidationList(String rootJsonDataPath, String rootJsonDataName,
+                                        String rootJsonSchemaPath, String jsonSchemaName) {
+
+        String jsonName = rootJsonDataName.concat(".").concat(FILE_EXTENSION);
+        try {
+
+            File jsonDataFile = FileUtils.getFile(rootJsonDataPath, jsonName);
+
+            File schemaFile = new File(
+                    rootJsonSchemaPath.concat(jsonSchemaName).concat(".").concat(FILE_EXTENSION));
+
+            JSONTokener schemaData = new JSONTokener(new FileInputStream(schemaFile));
+            JSONObject jsonSchema = new JSONObject(schemaData);
+
+            JSONTokener jsonData = new JSONTokener(new FileInputStream(jsonDataFile));
+            JSONArray jsonArray = new JSONArray(jsonData);
+
+            log.info("Comparing Json: {} with Schema: {}", jsonDataFile.getName(), schemaFile.getName());
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                Schema schema = SchemaLoader.load(jsonArray.getJSONObject(i));
+                schema.validate(jsonArray);
+            }
             return true;
 
         } catch (FileNotFoundException e) {
